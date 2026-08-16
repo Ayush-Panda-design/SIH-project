@@ -19,7 +19,7 @@ function MarketplaceCard({ employee }) {
     <div style={{
       display: 'flex', flexDirection: 'column', height: '100%',
       background: 'var(--bg-raised)', border: '1px solid var(--border)',
-      borderRadius: 'var(--radius-lg)', padding: '24px', transition: 'all 0.2s ease',
+      borderRadius: 'var(--radius-lg)', padding: '20px', transition: 'all 0.2s ease',
       boxShadow: '0 4px 20px -10px rgba(0,0,0,0.05)', position: 'relative', overflow: 'hidden'
     }}
     onMouseEnter={e => {
@@ -35,35 +35,35 @@ function MarketplaceCard({ employee }) {
       {/* Decorative gradient corner */}
       <div style={{ position: 'absolute', top: 0, right: 0, width: '100px', height: '100px', background: 'radial-gradient(circle at top right, var(--accent-soft), transparent 70%)', pointerEvents: 'none' }} />
 
-      <div style={{ display: 'flex', gap: '16px', marginBottom: '24px', alignItems: 'center' }}>
+      <div style={{ display: 'flex', gap: '14px', marginBottom: '20px', alignItems: 'center' }}>
         <div style={{ 
-          width: '56px', height: '56px', borderRadius: '12px', background: 'var(--bg-panel)',
+          width: '52px', height: '52px', borderRadius: '12px', background: 'var(--bg-panel)',
           border: '1px solid var(--border-soft)', padding: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center'
         }}>
           <img src={getAvatar(employee._id, employee.name)} alt="avatar" style={{ width: '100%', height: '100%' }} />
         </div>
         <div style={{ flex: 1 }}>
-          <div style={{ fontFamily: 'var(--mono)', fontSize: '16px', fontWeight: 600, color: 'var(--text)', marginBottom: '4px' }}>{employee.name}</div>
+          <div style={{ fontFamily: 'var(--mono)', fontSize: '15px', fontWeight: 600, color: 'var(--text)', marginBottom: '4px' }}>{employee.name}</div>
           <div style={{ fontSize: '12px', color: 'var(--text-dim)' }}>
             {{'software-development': 'Software Dev', 'design': 'Design', 'cybersecurity': 'Cybersecurity'}[employee.domain] || employee.domain} · {employee.experienceYears} yrs
           </div>
         </div>
         <div style={{ textAlign: 'right' }}>
-          <div style={{ fontFamily: 'var(--mono)', fontSize: '18px', fontWeight: 700, color: 'var(--accent)' }}>₹{employee.hourlyRate}</div>
+          <div style={{ fontFamily: 'var(--mono)', fontSize: '17px', fontWeight: 700, color: 'var(--accent)' }}>₹{employee.hourlyRate}</div>
           <div style={{ fontSize: '10px', color: 'var(--text-faint)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>/hour</div>
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px', marginBottom: '24px', paddingBottom: '20px', borderBottom: '1px dashed var(--border-soft)' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px', marginBottom: '20px', paddingBottom: '16px', borderBottom: '1px dashed var(--border-soft)' }}>
         {STATS.map((s) => (
           <div key={s.label} style={{ textAlign: 'center' }}>
-            <div style={{ fontFamily: 'var(--mono)', fontSize: '15px', fontWeight: 600, color: 'var(--text)' }}>{s.end}{s.suffix}</div>
-            <div style={{ fontSize: '11px', color: 'var(--text-faint)' }}>{s.label}</div>
+            <div style={{ fontFamily: 'var(--mono)', fontSize: '14px', fontWeight: 600, color: 'var(--text)' }}>{s.end}{s.suffix}</div>
+            <div style={{ fontSize: '10px', color: 'var(--text-faint)' }}>{s.label}</div>
           </div>
         ))}
       </div>
 
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '24px' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '20px' }}>
         {employee.skills.slice(0, 4).map((s) => (
           <span key={s} style={{ 
             fontFamily: 'var(--mono)', fontSize: '10px', padding: '4px 8px', 
@@ -79,11 +79,11 @@ function MarketplaceCard({ employee }) {
         )}
       </div>
 
-      <div style={{ marginTop: 'auto', display: 'flex', gap: '12px' }}>
-        <Link to={`/app/employees/${employee._id}`} className="btn" style={{ flex: 1, justifyContent: 'center', padding: '12px', fontSize: '13px' }}>
+      <div style={{ marginTop: 'auto', display: 'flex', gap: '10px' }}>
+        <Link to={`/app/employees/${employee._id}`} className="btn" style={{ flex: 1, justifyContent: 'center', padding: '10px', fontSize: '12px' }}>
           Passport
         </Link>
-        <Link to={`/app/hire/${employee._id}`} className="btn btn-primary" style={{ flex: 1, justifyContent: 'center', padding: '12px', fontSize: '13px' }}>
+        <Link to={`/app/hire/${employee._id}`} className="btn btn-primary" style={{ flex: 1, justifyContent: 'center', padding: '10px', fontSize: '12px' }}>
           Hire Agent
         </Link>
       </div>
@@ -257,7 +257,7 @@ export default function Marketplace() {
                 style={{ width: '100%', marginBottom: '24px' }}
               />
 
-              <div>
+              <div style={{ marginBottom: '32px' }}>
                 <h3 style={{ fontSize: '12px', fontFamily: 'var(--mono)', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-faint)', marginBottom: '16px' }}>Domains</h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {DOMAINS.map(d => (
@@ -284,6 +284,29 @@ export default function Marketplace() {
                     </button>
                   ))}
                 </div>
+              </div>
+
+              {/* Mock Filters to fill space */}
+              <div style={{ marginBottom: '32px', paddingTop: '24px', borderTop: '1px solid var(--border-soft)' }}>
+                <h3 style={{ fontSize: '12px', fontFamily: 'var(--mono)', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-faint)', marginBottom: '16px' }}>Hourly Rate</h3>
+                <input type="range" min="50" max="500" defaultValue="500" style={{ width: '100%', accentColor: 'var(--accent)', marginBottom: '8px' }} />
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: 'var(--text-dim)' }}>
+                  <span>₹50</span>
+                  <span>Up to ₹500</span>
+                </div>
+              </div>
+
+              <div style={{ marginBottom: '32px', paddingTop: '24px', borderTop: '1px solid var(--border-soft)' }}>
+                <h3 style={{ fontSize: '12px', fontFamily: 'var(--mono)', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-faint)', marginBottom: '16px' }}>Availability</h3>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px', color: 'var(--text-dim)', marginBottom: '12px', cursor: 'pointer' }}>
+                  <input type="checkbox" defaultChecked style={{ accentColor: 'var(--accent)' }} /> Available Now
+                </label>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px', color: 'var(--text-dim)', marginBottom: '12px', cursor: 'pointer' }}>
+                  <input type="checkbox" style={{ accentColor: 'var(--accent)' }} /> within 24 hours
+                </label>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px', color: 'var(--text-dim)', cursor: 'pointer' }}>
+                  <input type="checkbox" style={{ accentColor: 'var(--accent)' }} /> within 1 week
+                </label>
               </div>
             </div>
           </div>

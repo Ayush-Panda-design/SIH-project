@@ -5,13 +5,13 @@
    ============================================================ */
 
 :root {
-  --bg: #08090a;
-  --bg-raised: #0c0e10;
-  --bg-panel: #101214;
-  --bg-panel-2: #0a0b0d;
-  --border: #212427;
-  --border-soft: #1a1c1e;
-  --border-strong: #33373b;
+  --bg: #0A0A0A;
+  --bg-raised: #121212;
+  --bg-panel: #1A1A1A;
+  --bg-panel-2: #141414;
+  --border: #2C2C2C;
+  --border-soft: #222222;
+  --border-strong: #3E3E3E;
 
   --text: #edeff0;
   --text-dim: #8b9096;
@@ -41,25 +41,25 @@
 }
 
 :root.light-mode {
-  /* Warm cream base — NOT pure white */
-  --bg: #F6F1EC;
-  --bg-raised: #FFFFFF;
-  --bg-panel: #EDE7E0;
-  --bg-panel-2: #F9F5F1;
-  --border: #E0D8CF;
-  --border-soft: #EAE3DB;
-  --border-strong: #CFC5BA;
+  /* Desaturated warm-gray base — technical, not editorial */
+  --bg: #EFEBE3;
+  --bg-raised: #FBFAF7;
+  --bg-panel: #E8E4DC;
+  --bg-panel-2: #F5F4F1;
+  --border: rgba(0, 0, 0, 0.12);
+  --border-soft: rgba(0, 0, 0, 0.07);
+  --border-strong: rgba(0, 0, 0, 0.18);
 
   --text: #1A1714;
   --text-dim: #5C554D;
   --text-faint: #8A837B;
 
-  /* Warm terracotta accent (DryLadder-style) */
+  /* Warm terracotta accent — pops cleanly on near-white cards */
   --accent: #C85A36;
   --accent-bright: #D4603A;
-  --accent-soft: rgba(200, 90, 54, 0.10);
-  --accent-line: rgba(200, 90, 54, 0.30);
-  --accent-glow: rgba(200, 90, 54, 0.15);
+  --accent-soft: rgba(200, 90, 54, 0.08);
+  --accent-line: rgba(200, 90, 54, 0.25);
+  --accent-glow: rgba(200, 90, 54, 0.12);
 
   --green: #2E7D5B;
   --green-soft: rgba(46, 125, 91, 0.10);

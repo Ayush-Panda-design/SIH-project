@@ -163,7 +163,7 @@ function IndustryMentorTab() {
         Pick your preferred time slots and they'll confirm one that works for both.
       </p>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
         {INDUSTRY_MENTORS.map(m => {
           const isExpanded = expanded === m.id
           return (
@@ -175,23 +175,26 @@ function IndustryMentorTab() {
             }}>
               {/* Mentor Header */}
               <button onClick={() => { resetBooking(); setExpanded(isExpanded ? null : m.id) }} style={{
-                width: '100%', display: 'flex', alignItems: 'center', gap: '20px', padding: '24px',
+                width: '100%', display: 'flex', flexDirection: 'column', gap: '16px', padding: '24px',
                 background: 'transparent', border: 'none', cursor: 'pointer', textAlign: 'left',
               }}>
-                <img src={m.avatar} alt={m.name} style={{
-                  width: '56px', height: '56px', borderRadius: '50%',
-                  objectFit: 'cover', border: '2px solid var(--border-soft)',
-                  flexShrink: 0,
-                }} />
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontFamily: 'var(--mono)', fontSize: '16px', fontWeight: 600, color: 'var(--text)', marginBottom: '4px' }}>{m.name}</div>
-                  <div style={{ fontSize: '14px', color: 'var(--text-dim)' }}>{m.role} at <strong style={{ color: 'var(--text)' }}>{m.company}</strong> · {m.yearsExp} yrs</div>
-                  <div style={{ fontSize: '12px', color: 'var(--text-faint)', marginTop: '4px' }}>{m.specialty}</div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px', width: '100%' }}>
+                  <img src={m.avatar} alt={m.name} style={{ width: '56px', height: '56px', borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--border-soft)', flexShrink: 0 }} />
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontFamily: 'var(--mono)', fontSize: '16px', fontWeight: 600, color: 'var(--text)', marginBottom: '4px' }}>{m.name}</div>
+                    <div style={{ fontSize: '13px', color: 'var(--text-dim)' }}>{m.role} at <strong style={{ color: 'var(--text)' }}>{m.company}</strong></div>
+                  </div>
                 </div>
-                <div style={{ textAlign: 'right', flexShrink: 0, borderLeft: '1px solid var(--border-soft)', paddingLeft: '20px' }}>
-                  <div style={{ fontFamily: 'var(--mono)', fontSize: '18px', fontWeight: 700, color: 'var(--accent)' }}>₹{m.rate}</div>
-                  <div style={{ fontSize: '11px', color: 'var(--text-faint)', textTransform: 'uppercase', letterSpacing: '0.05em', margin: '2px 0 6px' }}>per session</div>
+                
+                <div style={{ fontSize: '12px', color: 'var(--text-faint)', lineHeight: 1.5 }}>
+                   Specializes in {m.specialty} · {m.yearsExp} yrs exp
+                </div>
+
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', borderTop: '1px solid var(--border-soft)', paddingTop: '16px', marginTop: '4px' }}>
                   <div style={{ fontSize: '11px', color: 'var(--text-faint)' }}>⭐ {m.rating} · {m.sessions} calls</div>
+                  <div style={{ textAlign: 'right' }}>
+                    <div style={{ fontFamily: 'var(--mono)', fontSize: '18px', fontWeight: 700, color: 'var(--accent)' }}>₹{m.rate}<span style={{ fontSize: '10px', color: 'var(--text-faint)', fontWeight: 400, letterSpacing: '0.05em', textTransform: 'uppercase' }}> / session</span></div>
+                  </div>
                 </div>
               </button>
 
@@ -262,14 +265,13 @@ function IndustryMentorTab() {
                         />
                       </div>
 
-                      {/* Request Button */}
                       <button
                         onClick={handleRequest}
                         disabled={selectedSlots.length === 0}
                         className="btn btn-primary"
                         style={{ width: '100%', justifyContent: 'center', padding: '14px', fontSize: '14px', opacity: selectedSlots.length === 0 ? 0.4 : 1 }}
                       >
-                        📹 Request Video Call · ₹{m.rate}
+                        Request Video Call · ₹{m.rate}
                       </button>
                       <div style={{ fontSize: '12px', color: 'var(--text-faint)', textAlign: 'center', marginTop: '12px' }}>
                         The mentor will review your topic and confirm a mutually convenient time slot
@@ -325,8 +327,9 @@ export default function Guidance() {
             color: tab === 'industry' ? 'var(--accent)' : 'var(--text-faint)',
             borderBottom: tab === 'industry' ? '2px solid var(--accent)' : '2px solid transparent',
             transition: 'all 0.2s', marginBottom: '-1px',
+            display: 'flex', alignItems: 'center', gap: '10px'
           }}>
-            🎥 Industry Experts
+            <span style={{ color: 'var(--border-strong)', fontWeight: 400 }}>{'<'}</span> Industry Experts <span style={{ color: 'var(--border-strong)', fontWeight: 400 }}>{'>'}</span>
           </button>
           <button onClick={() => setTab('ai')} style={{
             padding: '16px 24px', fontFamily: 'var(--mono)', fontSize: '14px', fontWeight: 600,
@@ -334,8 +337,9 @@ export default function Guidance() {
             color: tab === 'ai' ? 'var(--accent)' : 'var(--text-faint)',
             borderBottom: tab === 'ai' ? '2px solid var(--accent)' : '2px solid transparent',
             transition: 'all 0.2s', marginBottom: '-1px',
+            display: 'flex', alignItems: 'center', gap: '10px'
           }}>
-            🤖 AI Mentors
+            <span style={{ color: 'var(--border-strong)', fontWeight: 400 }}>{'['}</span> AI Mentors <span style={{ color: 'var(--border-strong)', fontWeight: 400 }}>{']'}</span>
           </button>
         </div>
 

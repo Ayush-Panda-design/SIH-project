@@ -92,13 +92,13 @@ export default function Hire() {
             ))}
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-            <div style={{ background: 'var(--bg-raised)', border: '1px solid var(--border-soft)', padding: '20px', borderRadius: 'var(--radius-md)' }}>
-              <div style={{ fontSize: '24px', fontFamily: 'var(--mono)', color: 'var(--accent)', fontWeight: 700, marginBottom: '4px' }}>{employee.successRate}%</div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+            <div style={{ background: 'var(--bg-raised)', border: '1px solid var(--border-soft)', padding: '16px', borderRadius: 'var(--radius-md)' }}>
+              <div style={{ fontSize: '22px', fontFamily: 'var(--mono)', color: 'var(--accent)', fontWeight: 700, marginBottom: '4px' }}>{employee.successRate}%</div>
               <div style={{ fontSize: '12px', color: 'var(--text-dim)' }}>Task Success Rate</div>
             </div>
-            <div style={{ background: 'var(--bg-raised)', border: '1px solid var(--border-soft)', padding: '20px', borderRadius: 'var(--radius-md)' }}>
-              <div style={{ fontSize: '24px', fontFamily: 'var(--mono)', color: 'var(--text)', fontWeight: 700, marginBottom: '4px' }}>{employee.tasksDone.toLocaleString()}</div>
+            <div style={{ background: 'var(--bg-raised)', border: '1px solid var(--border-soft)', padding: '16px', borderRadius: 'var(--radius-md)' }}>
+              <div style={{ fontSize: '22px', fontFamily: 'var(--mono)', color: 'var(--text)', fontWeight: 700, marginBottom: '4px' }}>{employee.tasksDone.toLocaleString()}</div>
               <div style={{ fontSize: '12px', color: 'var(--text-dim)' }}>Total Tasks Completed</div>
             </div>
           </div>
@@ -106,23 +106,23 @@ export default function Hire() {
 
         {/* Right Column: Booking Form */}
         <div style={{ width: '400px', flexShrink: 0, position: 'sticky', top: '100px' }}>
-          <div className="auth-card" style={{ maxWidth: '100%', margin: 0 }}>
-            <div style={{ borderBottom: '1px solid var(--border-soft)', paddingBottom: '20px', marginBottom: '24px' }}>
+          <div className="auth-card" style={{ maxWidth: '100%', margin: '0 0 16px 0', padding: '24px' }}>
+            <div style={{ borderBottom: '1px solid var(--border-soft)', paddingBottom: '16px', marginBottom: '20px' }}>
               <h2 style={{ fontFamily: 'var(--mono)', fontSize: '18px', margin: '0 0 8px' }}>Contract Setup</h2>
-              <p style={{ color: 'var(--text-dim)', margin: 0, fontSize: '14px' }}>Configure the hiring parameters for {employee.name}.</p>
+              <p style={{ color: 'var(--text-dim)', margin: 0, fontSize: '13px' }}>Configure parameters for {employee.name}.</p>
             </div>
 
-            <form onSubmit={handleHire} className="auth-form">
-              <div style={{ display: 'flex', gap: '16px', marginBottom: '24px' }}>
+            <form onSubmit={handleHire} className="auth-form" style={{ gap: '16px' }}>
+              <div style={{ display: 'flex', gap: '12px', marginBottom: '16px' }}>
                 <button 
                   type="button"
                   onClick={() => setMode('hourly')}
                   style={{ 
-                    flex: 1, padding: '12px', borderRadius: 'var(--radius-md)', 
+                    flex: 1, padding: '10px', borderRadius: 'var(--radius-sm)', 
                     background: mode === 'hourly' ? 'var(--accent-soft)' : 'transparent',
                     border: `1px solid ${mode === 'hourly' ? 'var(--accent)' : 'var(--border)'}`,
                     color: mode === 'hourly' ? 'var(--accent)' : 'var(--text-dim)',
-                    cursor: 'pointer', fontFamily: 'var(--mono)', fontSize: '13px', transition: 'all 0.2s ease'
+                    cursor: 'pointer', fontFamily: 'var(--mono)', fontSize: '12px', transition: 'all 0.2s ease'
                   }}
                 >
                   Hourly Rate
@@ -131,11 +131,11 @@ export default function Hire() {
                   type="button"
                   onClick={() => setMode('task')}
                   style={{ 
-                    flex: 1, padding: '12px', borderRadius: 'var(--radius-md)', 
+                    flex: 1, padding: '10px', borderRadius: 'var(--radius-sm)', 
                     background: mode === 'task' ? 'var(--accent-soft)' : 'transparent',
                     border: `1px solid ${mode === 'task' ? 'var(--accent)' : 'var(--border)'}`,
                     color: mode === 'task' ? 'var(--accent)' : 'var(--text-dim)',
-                    cursor: 'pointer', fontFamily: 'var(--mono)', fontSize: '13px', transition: 'all 0.2s ease'
+                    cursor: 'pointer', fontFamily: 'var(--mono)', fontSize: '12px', transition: 'all 0.2s ease'
                   }}
                 >
                   Fixed Task
@@ -143,7 +143,7 @@ export default function Hire() {
               </div>
 
               {mode === 'hourly' ? (
-                <div style={{ marginBottom: '24px' }}>
+                <div style={{ marginBottom: '16px' }}>
                   <label className="auth-label" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
                     <span>Estimated Hours</span>
                     <span style={{ color: 'var(--text)' }}>{hours}h</span>
@@ -161,43 +161,55 @@ export default function Hire() {
                   </div>
                 </div>
               ) : (
-                <label className="auth-label">
-                  Task Description
-                  <textarea 
-                    className="auth-input"
-                    rows="4"
-                    value={taskDescription}
-                    onChange={(e) => setTaskDescription(e.target.value)}
-                    placeholder="Briefly describe what you need built or fixed..."
-                    required
-                    style={{ resize: 'vertical', marginTop: '8px' }}
-                  />
-                </label>
+                <div style={{ marginBottom: '16px' }}>
+                  <label className="auth-label">
+                    Task Description
+                    <textarea 
+                      className="auth-input"
+                      rows="3"
+                      value={taskDescription}
+                      onChange={(e) => setTaskDescription(e.target.value)}
+                      placeholder="Describe what you need built..."
+                      required
+                      style={{ resize: 'vertical', marginTop: '8px' }}
+                    />
+                  </label>
+                </div>
               )}
 
               <div style={{ 
                 background: 'var(--bg-panel-2)', 
-                padding: '20px', 
-                borderRadius: 'var(--radius-md)', 
+                padding: '16px', 
+                borderRadius: 'var(--radius-sm)', 
                 display: 'flex', 
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 border: '1px dashed var(--border-strong)',
-                marginBottom: '24px'
+                marginBottom: '16px'
               }}>
                 <div>
-                  <div style={{ color: 'var(--text-dim)', fontSize: '13px', marginBottom: '4px' }}>Total Amount</div>
+                  <div style={{ color: 'var(--text-dim)', fontSize: '12px', marginBottom: '4px' }}>Total Amount</div>
                   <div style={{ fontSize: '11px', color: 'var(--text-faint)', fontFamily: 'var(--mono)' }}>Rate: ₹{employee.hourlyRate}/hr</div>
                 </div>
-                <div style={{ fontFamily: 'var(--mono)', fontSize: '24px', fontWeight: 700, color: 'var(--accent)' }}>
+                <div style={{ fontFamily: 'var(--mono)', fontSize: '20px', fontWeight: 700, color: 'var(--accent)' }}>
                   ₹{totalAmount.toLocaleString()}
                 </div>
               </div>
 
-              <button type="submit" className="auth-submit" disabled={isProcessing} style={{ height: '48px', fontSize: '15px' }}>
-                {isProcessing ? 'Connecting to Secure Workspace...' : `Pay ₹${totalAmount.toLocaleString()} & Deploy Agent`}
+              <button type="submit" className="btn btn-primary" disabled={isProcessing} style={{ width: '100%', justifyContent: 'center', padding: '14px', fontSize: '13px' }}>
+                {isProcessing ? 'Connecting...' : `Pay ₹${totalAmount.toLocaleString()} & Deploy Agent`}
               </button>
             </form>
+          </div>
+
+          <div style={{ background: 'var(--bg-raised)', border: '1px solid var(--border-soft)', padding: '20px', borderRadius: 'var(--radius-md)' }}>
+            <h3 style={{ fontFamily: 'var(--mono)', fontSize: '13px', margin: '0 0 12px', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-faint)' }}>What this agent can do</h3>
+            <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <li style={{ fontSize: '13px', color: 'var(--text-dim)', display: 'flex', gap: '8px' }}><span style={{ color: 'var(--accent)' }}>✓</span> Full codebase context indexing</li>
+              <li style={{ fontSize: '13px', color: 'var(--text-dim)', display: 'flex', gap: '8px' }}><span style={{ color: 'var(--accent)' }}>✓</span> Automated testing and linting</li>
+              <li style={{ fontSize: '13px', color: 'var(--text-dim)', display: 'flex', gap: '8px' }}><span style={{ color: 'var(--accent)' }}>✓</span> Secure branch creation</li>
+              <li style={{ fontSize: '13px', color: 'var(--text-dim)', display: 'flex', gap: '8px' }}><span style={{ color: 'var(--accent)' }}>✓</span> Follows strict workspace permissions</li>
+            </ul>
           </div>
         </div>
       </div>

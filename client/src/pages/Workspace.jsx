@@ -214,6 +214,11 @@ export const requireAuth = (req, res, next) => {
             </div>
             
             <div style={{ padding: '12px', borderTop: '1px solid var(--border)', background: 'var(--bg)' }}>
+              <div style={{ display: 'flex', gap: '8px', marginBottom: '10px', flexWrap: 'wrap' }}>
+                <span onClick={() => setInputValue('Fix authentication bug')} style={{ cursor: 'pointer', fontSize: '11px', fontFamily: 'var(--mono)', color: 'var(--text-dim)', padding: '4px 8px', background: 'var(--bg-raised)', border: '1px solid var(--border)', borderRadius: '4px', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color='var(--accent)'} onMouseLeave={e => e.target.style.color='var(--text-dim)'}>Fix auth bug</span>
+                <span onClick={() => setInputValue('Run linter on src/')} style={{ cursor: 'pointer', fontSize: '11px', fontFamily: 'var(--mono)', color: 'var(--text-dim)', padding: '4px 8px', background: 'var(--bg-raised)', border: '1px solid var(--border)', borderRadius: '4px', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color='var(--accent)'} onMouseLeave={e => e.target.style.color='var(--text-dim)'}>Run linter</span>
+                <span onClick={() => setInputValue('Write unit tests')} style={{ cursor: 'pointer', fontSize: '11px', fontFamily: 'var(--mono)', color: 'var(--text-dim)', padding: '4px 8px', background: 'var(--bg-raised)', border: '1px solid var(--border)', borderRadius: '4px', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color='var(--accent)'} onMouseLeave={e => e.target.style.color='var(--text-dim)'}>Write unit tests</span>
+              </div>
               <form onSubmit={handleSendMessage} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 <textarea 
                   value={inputValue}
@@ -229,7 +234,7 @@ export const requireAuth = (req, res, next) => {
                     }
                   }}
                 />
-                <button type="submit" className="auth-submit" disabled={isTyping} style={{ padding: '8px', fontSize: '12px' }}>Send Instruction</button>
+                <button type="submit" className="btn btn-primary" disabled={isTyping} style={{ padding: '8px', fontSize: '12px', justifyContent: 'center' }}>Send Instruction</button>
               </form>
             </div>
           </div>

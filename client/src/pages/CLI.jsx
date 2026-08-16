@@ -48,6 +48,71 @@ export default function CLI() {
               agenthire login
             </div>
           </div>
+        </div>
+
+        {/* Right Side */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          {/* Animated Terminal */}
+          <div style={{ 
+            background: 'var(--bg-raised)', 
+            borderRadius: '12px', 
+            border: '1px solid var(--border)',
+            overflow: 'hidden',
+            boxShadow: '0 20px 40px -10px rgba(0,0,0,0.1)'
+          }}>
+            {/* Mac window controls */}
+            <div style={{ display: 'flex', gap: '8px', padding: '16px', borderBottom: '1px solid var(--border)', background: 'var(--bg-panel)' }}>
+              <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#FF5F56' }} />
+              <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#FFBD2E' }} />
+              <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#27C93F' }} />
+            </div>
+            
+            {/* Terminal content */}
+            <div style={{ padding: '20px', fontFamily: 'var(--mono)', fontSize: '13px', lineHeight: 1.6, color: 'var(--text-dim)', minHeight: '340px' }}>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <span style={{ color: 'var(--green)' }}>➜</span>
+                <span style={{ color: 'var(--blue)' }}>project-dir</span>
+                <span style={{ color: 'var(--text)' }}>agenthire login</span>
+              </div>
+              
+              {step >= 1 && (
+                <div style={{ marginTop: '8px', color: 'var(--text-dim)' }}>
+                  Opening browser for authentication...<br/>
+                  <span style={{ color: 'var(--green)' }}>✔ Successfully authenticated as Demo User</span>
+                </div>
+              )}
+
+              {step >= 2 && (
+                <div style={{ display: 'flex', gap: '8px', marginTop: '16px' }}>
+                  <span style={{ color: 'var(--green)' }}>➜</span>
+                  <span style={{ color: 'var(--blue)' }}>project-dir</span>
+                  <span style={{ color: 'var(--text)' }}>agenthire connect sess_982F3</span>
+                </div>
+              )}
+
+              {step >= 3 && (
+                <div style={{ marginTop: '8px', color: 'var(--text-dim)' }}>
+                  Establishing secure tunnel to AgentHire Cloud...<br/>
+                  Syncing local permissions configuration...<br/>
+                  <span style={{ color: 'var(--accent)' }}>Sandboxing active. Agent restricted to ./project-dir</span>
+                </div>
+              )}
+
+              {step >= 4 && (
+                <div style={{ marginTop: '16px', color: 'var(--green)', fontWeight: 600 }}>
+                  🚀 Workspace linked successfully! 
+                  <div style={{ color: 'var(--text-dim)', fontWeight: 400, marginTop: '8px' }}>
+                    The AI employee "FullStack Pro AI" is now connected.<br/>
+                    Waiting for commands from the web dashboard...
+                  </div>
+                </div>
+              )}
+              
+              {step < 4 && (
+                <div style={{ marginTop: '8px', width: '8px', height: '16px', background: 'var(--text)', animation: 'blink 1s step-end infinite' }} />
+              )}
+            </div>
+          </div>
 
           <div style={{ background: 'var(--bg-raised)', padding: '24px', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)' }}>
             <div style={{ fontFamily: 'var(--mono)', fontSize: '13px', color: 'var(--accent)', fontWeight: 600, marginBottom: '8px' }}>STEP 3</div>
@@ -58,71 +123,6 @@ export default function CLI() {
             <div style={{ background: 'var(--bg-panel)', padding: '12px 16px', borderRadius: 'var(--radius-md)', fontFamily: 'var(--mono)', fontSize: '13px', color: 'var(--text)', border: '1px solid var(--border)', marginTop: '16px' }}>
               agenthire connect &lt;session-id&gt;
             </div>
-          </div>
-
-        </div>
-
-        {/* Animated Terminal */}
-        <div style={{ 
-          background: 'var(--bg-raised)', 
-          borderRadius: '12px', 
-          border: '1px solid var(--border)',
-          overflow: 'hidden',
-          boxShadow: '0 20px 40px -10px rgba(0,0,0,0.1)',
-          position: 'sticky',
-          top: '100px'
-        }}>
-          {/* Mac window controls */}
-          <div style={{ display: 'flex', gap: '8px', padding: '16px', borderBottom: '1px solid var(--border)', background: 'var(--bg-panel)' }}>
-            <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#FF5F56' }} />
-            <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#FFBD2E' }} />
-            <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#27C93F' }} />
-          </div>
-          
-          {/* Terminal content */}
-          <div style={{ padding: '20px', fontFamily: 'var(--mono)', fontSize: '13px', lineHeight: 1.6, color: 'var(--text-dim)', minHeight: '340px' }}>
-            <div style={{ display: 'flex', gap: '8px' }}>
-              <span style={{ color: 'var(--green)' }}>➜</span>
-              <span style={{ color: 'var(--blue)' }}>project-dir</span>
-              <span style={{ color: 'var(--text)' }}>agenthire login</span>
-            </div>
-            
-            {step >= 1 && (
-              <div style={{ marginTop: '8px', color: 'var(--text-dim)' }}>
-                Opening browser for authentication...<br/>
-                <span style={{ color: 'var(--green)' }}>✔ Successfully authenticated as Demo User</span>
-              </div>
-            )}
-
-            {step >= 2 && (
-              <div style={{ display: 'flex', gap: '8px', marginTop: '16px' }}>
-                <span style={{ color: 'var(--green)' }}>➜</span>
-                <span style={{ color: 'var(--blue)' }}>project-dir</span>
-                <span style={{ color: 'var(--text)' }}>agenthire connect sess_982F3</span>
-              </div>
-            )}
-
-            {step >= 3 && (
-              <div style={{ marginTop: '8px', color: 'var(--text-dim)' }}>
-                Establishing secure tunnel to AgentHire Cloud...<br/>
-                Syncing local permissions configuration...<br/>
-                <span style={{ color: 'var(--accent)' }}>Sandboxing active. Agent restricted to ./project-dir</span>
-              </div>
-            )}
-
-            {step >= 4 && (
-              <div style={{ marginTop: '16px', color: 'var(--green)', fontWeight: 600 }}>
-                🚀 Workspace linked successfully! 
-                <div style={{ color: 'var(--text-dim)', fontWeight: 400, marginTop: '8px' }}>
-                  The AI employee "FullStack Pro AI" is now connected.<br/>
-                  Waiting for commands from the web dashboard...
-                </div>
-              </div>
-            )}
-            
-            {step < 4 && (
-              <div style={{ marginTop: '8px', width: '8px', height: '16px', background: 'var(--text)', animation: 'blink 1s step-end infinite' }} />
-            )}
           </div>
         </div>
       </div>

@@ -184,134 +184,28 @@ export default function AgentHireLanding() {
         }
         .ah-root *{ box-sizing: border-box; }
 
-        /* background grid */
+        /* background grid — hero-only, tightly contained */
         .ah-grid{
-          position:absolute; top:0; left:0; right:0; height: 900px;
+          position:absolute; top:0; left:0; right:0; height: 520px;
           background-image:
             linear-gradient(var(--grid) 1px, transparent 1px),
             linear-gradient(90deg, var(--grid) 1px, transparent 1px);
           background-size: 64px 64px;
-          -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 10%, black 40%, transparent 90%);
-          mask-image: radial-gradient(ellipse 80% 60% at 50% 10%, black 40%, transparent 90%);
+          -webkit-mask-image: radial-gradient(ellipse 70% 50% at 50% 0%, black 20%, transparent 70%);
+          mask-image: radial-gradient(ellipse 70% 50% at 50% 0%, black 20%, transparent 70%);
           pointer-events:none;
+          opacity: 0.5;
         }
 
-        /* decorative chrome rings */
-        .ah-ring-wrap{
-          position:absolute; top: 60px; width: 460px; height: 460px;
-          pointer-events:none;
-          opacity: 0;
-          animation: ringReveal 1.1s cubic-bezier(.16,1,.3,1) forwards;
-        }
-        .ah-ring-wrap.left{ left: -230px; animation-name: ringRevealLeft; animation-delay: .05s; }
-        .ah-ring-wrap.right{ right: -230px; animation-name: ringRevealRight; animation-delay: .2s; }
-        .ah-ring-wrap.left .ah-ring{ animation: ringSpin 70s linear infinite, ringDriftLeft 20s ease-in-out infinite; }
-        .ah-ring-wrap.right .ah-ring{ animation: ringSpin 90s linear infinite reverse, ringDriftRight 24s ease-in-out infinite; }
-        .ah-ring{
-          width: 100%; height: 100%;
-          border-radius: 50%;
-          background: conic-gradient(from 200deg, #ffffff, #cfd3da 18%, #ffffff 32%, #b9bdc6 48%, #ffffff 62%, #d8dbe1 78%, #ffffff 100%);
-          -webkit-mask-image: radial-gradient(circle, transparent 58%, black 59%);
-          mask-image: radial-gradient(circle, transparent 58%, black 59%);
-          box-shadow: 0 40px 80px -20px rgba(20,20,25,0.25);
-          filter: saturate(0.9);
-        }
-
-        @keyframes ringSpin{
-          from{ transform: rotate(0deg); }
-          to{ transform: rotate(360deg); }
-        }
-        @keyframes ringDriftLeft{
-          0%, 100%{ transform: translateY(0px) translateX(0px); }
-          50%{ transform: translateY(-22px) translateX(8px); }
-        }
-        @keyframes ringDriftRight{
-          0%, 100%{ transform: translateY(0px) translateX(0px); }
-          50%{ transform: translateY(24px) translateX(-8px); }
-        }
-        @keyframes ringRevealLeft{
-          from{ opacity:0; transform: translateX(-60px) scale(.92); }
-          to{ opacity:1; transform: translateX(0) scale(1); }
-        }
-        @keyframes ringRevealRight{
-          from{ opacity:0; transform: translateX(60px) scale(.92); }
-          to{ opacity:1; transform: translateX(0) scale(1); }
-        }
+        /* decorative chrome rings — hidden for cleaner layout */
+        .ah-ring-wrap{ display:none; }
 
         @media (prefers-reduced-motion: reduce){
-          .ah-ring-wrap.left, .ah-ring-wrap.right, .ah-ring,
-          .ah-ring-wrap.left .ah-ring, .ah-ring-wrap.right .ah-ring{ animation: none; opacity:1; }
           .ah-core-wrap, .ah-core-ring, .ah-spark{ animation: none !important; }
         }
 
-        @media (max-width: 980px){
-          .ah-ring-wrap{ display:none; }
-        }
-
-        /* ===== central rotating core + sparks — fixed, sits behind every section ===== */
-        .ah-core-wrap{
-          position: fixed;
-          top: 50%; left: 50%;
-          width: 620px; height: 620px;
-          transform: translate(-50%, -50%);
-          z-index: 1;
-          pointer-events: none;
-          opacity: 0;
-          animation: coreReveal 1.4s cubic-bezier(.16,1,.3,1) .3s forwards;
-          mix-blend-mode: multiply;
-        }
-        @keyframes coreReveal{
-          from{ opacity:0; transform: translate(-50%, -50%) scale(.85); }
-          to{ opacity: .55; transform: translate(-50%, -50%) scale(1); }
-        }
-        .ah-core-glow{
-          position:absolute; inset: 12%;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(214,169,79,0.18), transparent 70%);
-          filter: blur(6px);
-        }
-        .ah-core-ring{
-          position:absolute; inset:0;
-          border-radius: 50%;
-          background: conic-gradient(from 0deg, transparent 0%, rgba(214,169,79,0.55) 12%, transparent 24%, transparent 50%, rgba(28,29,32,0.35) 62%, transparent 74%, transparent 100%);
-          -webkit-mask-image: radial-gradient(circle, transparent 63%, black 64%, black 78%, transparent 79%);
-          mask-image: radial-gradient(circle, transparent 63%, black 64%, black 78%, transparent 79%);
-          animation: ringSpin 26s linear infinite;
-        }
-        .ah-core-ring.inner{
-          inset: 9%;
-          -webkit-mask-image: radial-gradient(circle, transparent 66%, black 67%, black 74%, transparent 75%);
-          mask-image: radial-gradient(circle, transparent 66%, black 67%, black 74%, transparent 75%);
-          background: conic-gradient(from 140deg, transparent 0%, rgba(28,29,32,0.4) 10%, transparent 20%, transparent 55%, rgba(214,169,79,0.5) 66%, transparent 76%, transparent 100%);
-          animation: ringSpin 18s linear infinite reverse;
-        }
-        .ah-core-dot{
-          position:absolute; top:50%; left:50%;
-          width:6px; height:6px; border-radius:50%;
-          background: var(--gold);
-          box-shadow: 0 0 10px 2px rgba(214,169,79,0.7);
-          transform: translate(-50%,-50%);
-        }
-        .ah-spark{
-          position:absolute; top:50%; left:50%;
-          border-radius:50%;
-          background: var(--gold);
-          box-shadow: 0 0 6px 1px rgba(214,169,79,0.8);
-          opacity:0;
-          animation-name: sparkFly;
-          animation-timing-function: cubic-bezier(.2,.7,.3,1);
-          animation-iteration-count: infinite;
-        }
-        @keyframes sparkFly{
-          0%{ opacity:0; transform: translate(-50%,-50%) rotate(var(--ang)) translateX(0) scale(1); }
-          8%{ opacity:1; }
-          70%{ opacity:.65; }
-          100%{ opacity:0; transform: translate(-50%,-50%) rotate(var(--ang)) translateX(var(--dist)) scale(.3); }
-        }
-
-        @media (max-width: 720px){
-          .ah-core-wrap{ width: 380px; height: 380px; }
-        }
+        /* central core — hidden for cleaner layout */
+        .ah-core-wrap{ display:none; }
 
         /* nav */
         .ah-nav{
@@ -353,7 +247,7 @@ export default function AgentHireLanding() {
           position:relative; z-index:5;
           max-width: 780px; margin: 0 auto;
           text-align:center;
-          padding: 96px 24px 0;
+          padding: 56px 24px 0;
         }
 
         @keyframes heroFadeUp{
@@ -410,7 +304,7 @@ export default function AgentHireLanding() {
 
         .ah-stat-row{
           display:flex; justify-content:center; gap: 40px;
-          margin-top: 54px; flex-wrap: wrap;
+          margin-top: 36px; flex-wrap: wrap;
         }
         .ah-stat{ text-align:center; }
         .ah-stat .n{ font-size: 22px; font-weight: 800; color: var(--ink); letter-spacing:-0.01em; }
@@ -419,7 +313,7 @@ export default function AgentHireLanding() {
         /* floating app preview */
         .ah-preview-wrap{
           position:relative; z-index:5;
-          max-width: 1040px; margin: 64px auto 0;
+          max-width: 1040px; margin: 44px auto 0;
           padding: 0 20px;
         }
         .ah-preview{
@@ -517,24 +411,24 @@ export default function AgentHireLanding() {
         .ah-section{
           position:relative; z-index:5;
           max-width: 1100px; margin: 0 auto;
-          padding: 120px 24px 0;
+          padding: 64px 24px 0;
         }
-        .ah-section-head{ text-align:center; max-width: 620px; margin: 0 auto 56px; }
+        .ah-section-head{ text-align:center; max-width: 620px; margin: 0 auto 32px; }
         .ah-kicker{
           font-size: 12px; font-weight: 700; color: var(--ink-faint);
-          text-transform: uppercase; letter-spacing: .1em; margin-bottom: 12px;
+          text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px;
         }
         .ah-section-title{
-          font-size: clamp(28px, 3.6vw, 38px); font-weight: 800;
-          letter-spacing: -0.02em; line-height:1.15; margin-bottom: 14px;
+          font-size: clamp(26px, 3.4vw, 34px); font-weight: 800;
+          letter-spacing: -0.02em; line-height:1.15; margin-bottom: 10px;
         }
-        .ah-section-sub{ font-size: 15.5px; color: var(--ink-soft); line-height:1.65; }
+        .ah-section-sub{ font-size: 14.5px; color: var(--ink-soft); line-height:1.6; }
 
         /* issuers strip */
         .ah-issuers{
           display:flex; align-items:center; justify-content:center; gap: 14px;
-          flex-wrap:wrap; padding: 30px 24px 0;
-          max-width: 900px; margin: 56px auto 0;
+          flex-wrap:wrap; padding: 24px 24px 0;
+          max-width: 900px; margin: 32px auto 0;
         }
         .ah-issuer-label{ font-size:12.5px; color: var(--ink-faint); font-weight:600; margin-right: 6px; }
         .ah-issuer-chip{
@@ -555,18 +449,18 @@ export default function AgentHireLanding() {
         @media (max-width: 900px){ .ah-steps-grid{ grid-template-columns: repeat(2, 1fr);} }
         @media (max-width: 560px){ .ah-steps-grid{ grid-template-columns: 1fr;} }
         .ah-step-card{
-          background: var(--panel); border:1px solid var(--line); border-radius:16px;
-          padding: 22px 18px; position:relative;
+          background: var(--panel); border:1px solid var(--line); border-radius:14px;
+          padding: 18px 16px; position:relative;
           transition: transform .18s ease, box-shadow .18s ease;
         }
-        .ah-step-card:hover{ transform: translateY(-3px); box-shadow: 0 20px 40px -20px rgba(16,17,20,0.25); }
-        .ah-step-num{ font-size:11px; font-weight:800; color: var(--ink-faint); margin-bottom: 14px; }
+        .ah-step-card:hover{ transform: translateY(-3px); box-shadow: 0 16px 32px -16px rgba(16,17,20,0.2); }
+        .ah-step-num{ font-size:11px; font-weight:800; color: var(--ink-faint); margin-bottom: 10px; }
         .ah-step-icon{
-          width: 36px; height:36px; border-radius:10px; background:#f2f2f0;
-          display:flex; align-items:center; justify-content:center; margin-bottom: 14px; color: var(--ink);
+          width: 32px; height:32px; border-radius:8px; background:#f2f2f0;
+          display:flex; align-items:center; justify-content:center; margin-bottom: 10px; color: var(--ink);
         }
-        .ah-step-card h3{ font-size:14.5px; font-weight:700; margin-bottom:6px; }
-        .ah-step-card p{ font-size:12.5px; color: var(--ink-soft); line-height:1.55; }
+        .ah-step-card h3{ font-size:13.5px; font-weight:700; margin-bottom:5px; }
+        .ah-step-card p{ font-size:12px; color: var(--ink-soft); line-height:1.5; }
 
         /* product grid */
         .ah-product-grid{
@@ -575,16 +469,16 @@ export default function AgentHireLanding() {
         @media (max-width: 860px){ .ah-product-grid{ grid-template-columns: repeat(2, 1fr);} }
         @media (max-width: 560px){ .ah-product-grid{ grid-template-columns: 1fr;} }
         .ah-product-card{
-          background: var(--panel); border:1px solid var(--line); border-radius:16px;
-          padding: 24px; transition: transform .18s ease, box-shadow .18s ease;
+          background: var(--panel); border:1px solid var(--line); border-radius:14px;
+          padding: 20px; transition: transform .18s ease, box-shadow .18s ease;
         }
-        .ah-product-card:hover{ transform: translateY(-3px); box-shadow: 0 20px 40px -20px rgba(16,17,20,0.25); }
+        .ah-product-card:hover{ transform: translateY(-3px); box-shadow: 0 16px 32px -16px rgba(16,17,20,0.2); }
         .ah-product-icon{
-          width: 38px; height:38px; border-radius:10px; background: var(--ink);
-          display:flex; align-items:center; justify-content:center; color:#fff; margin-bottom:16px;
+          width: 34px; height:34px; border-radius:9px; background: var(--ink);
+          display:flex; align-items:center; justify-content:center; color:#fff; margin-bottom:12px;
         }
-        .ah-product-card h3{ font-size: 15px; font-weight:700; margin-bottom:7px; }
-        .ah-product-card p{ font-size:13px; color:var(--ink-soft); line-height:1.55; }
+        .ah-product-card h3{ font-size: 14px; font-weight:700; margin-bottom:5px; }
+        .ah-product-card p{ font-size:12.5px; color:var(--ink-soft); line-height:1.5; }
 
         /* security section */
         .ah-security{
@@ -663,7 +557,7 @@ export default function AgentHireLanding() {
 
         /* CTA banner */
         .ah-banner{
-          background: var(--ink); border-radius: 24px; margin-top: 60px;
+          background: var(--ink); border-radius: 24px; margin-top: 40px;
           padding: 64px 40px; text-align:center; position:relative; overflow:hidden;
         }
         .ah-banner h2{ color:#fff; font-size: clamp(26px,3.6vw,36px); font-weight:800; letter-spacing:-0.02em; margin-bottom:14px; }
@@ -676,7 +570,7 @@ export default function AgentHireLanding() {
 
         /* footer */
         .ah-footer{
-          position:relative; z-index:5; max-width:1100px; margin: 100px auto 0; padding: 0 24px 50px;
+          position:relative; z-index:5; max-width:1100px; margin: 64px auto 0; padding: 0 24px 40px;
           display:grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 30px;
           border-top: 1px solid var(--line); padding-top: 44px;
         }
